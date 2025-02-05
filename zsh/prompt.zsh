@@ -55,7 +55,7 @@ directory_name() {
 }
 
 current_time() {
-  echo "%{$fg_bold[green]%}%}[%*]%{$reset_color%}"
+  echo "%{$fg_bold[green]%}%}%*%{$reset_color%}"
 }
 
 battery_status() {
