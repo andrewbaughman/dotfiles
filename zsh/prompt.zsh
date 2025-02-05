@@ -54,6 +54,10 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
+current_time() {
+  echo "%{$fg_bold[green]%}%}[%*]%{$reset_color%}"
+}
+
 battery_status() {
   if test ! "$(uname)" = "Darwin"
   then
@@ -66,7 +70,7 @@ battery_status() {
   fi
 }
 
-export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(current_time) in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
