@@ -6,3 +6,4 @@ brew 'wget'
 
 cask 'raycast'
 cask 'visual-studio-code'
+cask 'shottr'
