@@ -9,6 +9,8 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
+	adog = log --all --decorate --oneline --graph
+	watchtower = log --pretty=format:'%Cgreen%<(32)%cD%Creset %Cred%h%Creset %C(bold blue)%<(24)<%an>%Creset %<(60)%s %C(yellow)%d%Creset' --abbrev-commit --stat
 [color]
         diff = auto
         status = auto
@@ -38,3 +40,5 @@
 
 [init]
 	defaultBranch = main
+[commit]
+	template = /Users/abaughman/.gitmessage
