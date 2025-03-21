@@ -30,3 +30,6 @@ brew "python"
 brew "ffmpeg"
 brew "imagemagick"
 brew "webp"
+
+# misc
+brew "bat"

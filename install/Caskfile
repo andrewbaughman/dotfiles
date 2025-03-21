@@ -1,3 +1,4 @@
 cask "firefox"
 cask "raycast"
 cask "visual-studio-code"
+cask "shottr"

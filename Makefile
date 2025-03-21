@@ -3,7 +3,7 @@ OS := $(shell bin/is-supported bin/is-macos macos linux)
 HOMEBREW_PREFIX := $(shell bin/is-supported bin/is-macos $(shell bin/is-supported bin/is-arm64 /opt/homebrew /usr/local) /home/linuxbrew/.linuxbrew)
 export N_PREFIX = $(HOME)/.n
 PATH := $(HOMEBREW_PREFIX)/bin:$(DOTFILES_DIR)/bin:$(N_PREFIX)/bin:$(PATH)
-SHELL := env PATH=$(PATH) /bin/bash
+SHELL := env PATH=$(PATH) /bin/zsh
 SHELLS := /private/etc/shells
 BIN := $(HOMEBREW_PREFIX)/bin
 export XDG_CONFIG_HOME = $(HOME)/.config
@@ -18,7 +18,7 @@ macos: sudo core-macos packages link duti bun
 
 linux: core-linux link bun
 
-core-macos: brew bash git npm
+core-macos: brew zsh git npm
 
 core-linux:
 	apt-get update
@@ -69,6 +69,21 @@ else
 		brew install bash bash-completion@2 pcre && \
 		echo $(shell which bash) | sudo tee -a $(SHELLS) && \
 		chsh -s $(shell which bash); \
+	fi
+endif
+
+zsh: brew
+ifdef GITHUB_ACTION
+	if ! grep -q zsh $(SHELLS); then \
+		brew install zsh zsh-completions pcre && \
+		echo $(shell which zsh) | sudo tee -a $(SHELLS) && \
+		sudo chsh -s $(shell which zsh); \
+	fi
+else
+	if ! grep -q zsh $(SHELLS); then \
+		brew install zsh zsh-completions pcre && \
+		echo $(shell which zsh) | sudo tee -a $(SHELLS) && \
+		chsh -s $(shell which zsh); \
 	fi
 endif
 
