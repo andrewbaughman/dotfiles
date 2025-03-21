@@ -1,8 +1,8 @@
-COMPUTER_NAME="Neo"
+COMPUTER_NAME="Zephyr"
 LANGUAGES=(en nl)
 LOCALE="en_US@currency=EUR"
 MEASUREMENT_UNITS="Centimeters"
-SCREENSHOTS_FOLDER="${HOME}/Screenshots"
+SCREENSHOTS_FOLDER="${HOME}/Desktop"
 
 # Topics
 #

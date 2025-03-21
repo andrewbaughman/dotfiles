@@ -1,9 +1,9 @@
 [user]
-	name = Lars Kappert
-	email = lars@webpro.nl
+	name = Andrew Baughman
+	email = andrewbaughman@icloud.com
 
 [github]
-	user = webpro
+	user = andrewbaughman
 
 [core]
 	excludesfile = ~/.config/git/ignore
