@@ -1,6 +1,6 @@
 # .files
 
-These are my dotfiles. Take anything you want, but at your own risk.
+These are my dotfiles, forked from Lars Kappert's [dotfiles](https://github.com/webpro/dotfiles). Take anything you want, but at your own risk.
 
 It mainly targets macOS systems (should install on e.g. Ubuntu as well for many tools, config and aliases etc).
 
@@ -106,3 +106,5 @@ To customize the dotfiles to your likings, fork it and [be the king of your cast
 ## Credits
 
 Many thanks to the [dotfiles community](https://dotfiles.github.io).
+Thank you Lars Kappert. Your dotfiles were so easy to read. I learned a lot.
+Also, thanks to everyone who works on AI tools like ChatGPT and especially to everyone who writes documentation. ChatGPT and [GNU make documentation](https://www.gnu.org/software/make/manual/make.html) have been super helpful since I'm new to Makefiles.
