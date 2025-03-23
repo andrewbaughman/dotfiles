@@ -1,5 +1,9 @@
 ## Prompt
 
+autoload colors && colors
+# cheers, @ehrenmurdick
+# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
+
 _bash_prompt_config() {
 
   local USER_SYMBOL="\u"
@@ -93,12 +97,58 @@ bash_prompt_command() {
   PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_YELLOW} ❯ ${P_RESET}"
 }
 
+zsh_prompt_config() {}
+zsh_prompt_command() {
+  export PROMPT=$'\n$(current_time) in $(directory_name) $(colorize_git_branch)$(need_push)\n› '
+}
+
 parse_git_branch() {
-  local OUT=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+  local OUT=$(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
   if [ "$OUT" != "" ]; then echo " $OUT"; fi
 }
 
-_bash_prompt_config
-unset _bash_prompt_config
+colorize_git_branch() {
+  if $(! $git status -s &> /dev/null)
+  then
+    echo ""
+  else
+    if [[ $($git status --porcelain) == "" ]]
+    then
+      echo "on %{$fg_bold[green]%}$(parse_git_branch)%{$reset_color%}"
+    else
+      echo "on %{$fg_bold[red]%}$(parse_git_branch)%{$reset_color%}"
+    fi
+  fi
+}
 
-PROMPT_COMMAND=bash_prompt_command
+need_push () {
+  if [ $($git rev-parse --is-inside-work-tree 2>/dev/null) ]
+  then
+    number=$($git cherry -v origin/$(git symbolic-ref --short HEAD) 2>/dev/null | wc -l | bc)
+
+    if [[ $number == 0 ]]
+    then
+      echo " "
+    else
+      echo " with %{$fg_bold[magenta]%}$number unpushed%{$reset_color%}"
+    fi
+  fi
+}
+
+directory_name() {
+  echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
+}
+
+current_time() {
+  echo "%{$fg_bold[green]%}%}%*%{$reset_color%}"
+}
+
+# _bash_prompt_config
+# unset _bash_prompt_config
+
+# PROMPT_COMMAND=bash_prompt_command
+
+_zsh_prompt_config
+unset _zsh_prompt_config
+
+PROMPT_COMMAND=zsh_prompt_command

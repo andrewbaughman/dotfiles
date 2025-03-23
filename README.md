@@ -7,7 +7,7 @@ It mainly targets macOS systems (should install on e.g. Ubuntu as well for many 
 ## Highlights
 
 - Minimal efforts to install everything, using a [Makefile](./Makefile)
-- Mostly based around Homebrew, Caskroom and Node.js, latest Bash + GNU Utils
+- Mostly based around Homebrew and Caskroom. I've temporarily removed Node.js tools. Also latest Zsh
 - Fast and colored prompt
 - Updated macOS defaults
 - Well-organized and easy to customize
@@ -20,9 +20,7 @@ It mainly targets macOS systems (should install on e.g. Ubuntu as well for many 
 
 - [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
 - [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
-- [Node.js + npm LTS](https://nodejs.org/en/download/) (packages: [npmfile](./install/npmfile))
-- Latest Git, Bash, Python, GNU coreutils, curl, Ruby
-- `$EDITOR` is [GNU nano](https://www.nano-editor.org) (`$VISUAL` is `code` and Git `core.editor` is `code --wait`)
+- Latest Git, Bash, curl
 
 ## Installation
 
@@ -96,7 +94,7 @@ Commands:
    help             This help message
    macos            Apply macOS system defaults
    test             Run tests
-   update           Update packages and pkg managers (brew, casks, cargo, pip3, npm, gems, macOS)
+   update           Update packages and pkg managers (brew, casks, cargo, pip3, gems, macOS)
 ```
 
 ## Customize

@@ -14,11 +14,11 @@ export ACCEPT_EULA=Y
 
 all: $(OS)
 
-macos: sudo core-macos packages link duti bun
+macos: sudo core-macos packages link duti
 
-linux: core-linux link bun
+linux: core-linux link
 
-core-macos: brew zsh git npm
+core-macos: brew zsh git
 
 core-linux:
 	apt-get update
@@ -37,7 +37,7 @@ ifndef GITHUB_ACTION
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 endif
 
-packages: brew-packages cask-apps node-packages vscode-extensions
+packages: brew-packages cask-apps vscode-extensions
 
 link: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
@@ -90,9 +90,6 @@ endif
 git: brew
 	brew install git git-extras
 
-npm: brew-packages
-	n install lts
-
 brew-packages: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Brewfile || true
 
@@ -102,14 +99,8 @@ cask-apps: brew
 vscode-extensions: cask-apps
 	for EXT in $$(cat install/Codefile); do code --install-extension $$EXT; done
 
-node-packages: npm
-	$(N_PREFIX)/bin/npm install --force --location global $(shell cat install/npmfile)
-
 duti:
 	duti -v $(DOTFILES_DIR)/install/duti
-
-bun:
-  curl -fsSL https://bun.sh/install | bash
 
 test:
 	bats test
