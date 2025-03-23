@@ -4,12 +4,12 @@ These are my dotfiles, forked from Lars Kappert's [dotfiles](https://github.com/
 
 It mainly targets macOS systems (should install on e.g. Ubuntu as well for many tools, config and aliases etc).
 
+This is a work in progress. I've tried to strip down everything to the barebones of what I want with the hope of making a dotfiles repo that is easier to rapidly customize.
+
 ## Highlights
 
 - Minimal efforts to install everything, using a [Makefile](./Makefile)
-- Mostly based around Homebrew and Caskroom. I've temporarily removed Node.js tools. Also latest Zsh
-- Fast and colored prompt
-- Updated macOS defaults
+- Mostly based around Homebrew and Zsh
 - Well-organized and easy to customize
 - The installation and runcom setup is
   [tested weekly on real Ubuntu and macOS machines](https://github.com/andrewbaughman/dotfiles/actions)
@@ -19,8 +19,7 @@ It mainly targets macOS systems (should install on e.g. Ubuntu as well for many 
 ## Packages Overview
 
 - [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
-- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
-- Latest Git, Bash, curl
+- Latest Git, Zsh, curl
 
 ## Installation
 
@@ -68,19 +67,6 @@ git config --global user.email "your@email.com"
 git config --global github.user "your-github-username"
 ```
 
-2. Set macOS [Dock items](./macos/dock.sh) and [system defaults](./macos/defaults.sh):
-
-```sh
-dot dock
-dot macos
-```
-
-3. Populate this file with tokens (example: `export GITHUB_TOKEN=abc`):
-
-```sh
-touch ~/.dotfiles/system/.exports
-```
-
 ## The `dot` command
 
 ```
@@ -88,13 +74,8 @@ $ dot help
 Usage: dot <command>
 
 Commands:
-   clean            Clean up caches (brew, cargo, gem, pip)
-   dock             Apply macOS Dock settings
-   edit             Open dotfiles in IDE ($VISUAL) and Git GUI ($VISUAL_GIT)
    help             This help message
-   macos            Apply macOS system defaults
    test             Run tests
-   update           Update packages and pkg managers (brew, casks, cargo, pip3, gems, macOS)
 ```
 
 ## Customize

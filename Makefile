@@ -1,8 +1,7 @@
 DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 OS := $(shell bin/is-supported bin/is-macos macos linux)
 HOMEBREW_PREFIX := $(shell bin/is-supported bin/is-macos $(shell bin/is-supported bin/is-arm64 /opt/homebrew /usr/local) /home/linuxbrew/.linuxbrew)
-export N_PREFIX = $(HOME)/.n
-PATH := $(HOMEBREW_PREFIX)/bin:$(DOTFILES_DIR)/bin:$(N_PREFIX)/bin:$(PATH)
+PATH := $(HOMEBREW_PREFIX)/bin:$(DOTFILES_DIR)/bin:$(PATH)
 SHELL := env PATH=$(PATH) /bin/zsh
 SHELLS := /private/etc/shells
 BIN := $(HOMEBREW_PREFIX)/bin
@@ -14,22 +13,22 @@ export ACCEPT_EULA=Y
 
 all: $(OS)
 
-macos: sudo core-macos packages link duti
+macos: sudo core-macos packages link
 
 linux: core-linux link
 
-core-macos: brew zsh git
+core-macos: brew git zsh
 
 core-linux:
-	apt-get update
-	apt-get upgrade -y
-	apt-get dist-upgrade -f
+	apt update
+	apt upgrade -y
+	apt dist-upgrade -f
 
 stow-macos: brew
 	is-executable stow || brew install stow
 
 stow-linux: core-linux
-	is-executable stow || apt-get -y install stow
+	is-executable stow || apt -y install stow
 
 sudo:
 ifndef GITHUB_ACTION
@@ -37,7 +36,7 @@ ifndef GITHUB_ACTION
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 endif
 
-packages: brew-packages cask-apps vscode-extensions
+packages: brew-packages
 
 link: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
@@ -57,20 +56,8 @@ unlink: stow-$(OS)
 brew:
 	is-executable brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
 
-bash: brew
-ifdef GITHUB_ACTION
-	if ! grep -q bash $(SHELLS); then \
-		brew install bash bash-completion@2 pcre && \
-		echo $(shell which bash) | sudo tee -a $(SHELLS) && \
-		sudo chsh -s $(shell which bash); \
-	fi
-else
-	if ! grep -q bash $(SHELLS); then \
-		brew install bash bash-completion@2 pcre && \
-		echo $(shell which bash) | sudo tee -a $(SHELLS) && \
-		chsh -s $(shell which bash); \
-	fi
-endif
+git: brew
+	brew install git
 
 zsh: brew
 ifdef GITHUB_ACTION
@@ -81,26 +68,17 @@ ifdef GITHUB_ACTION
 	fi
 else
 	if ! grep -q zsh $(SHELLS); then \
-		brew install zsh zsh-completions pcre && \
+		brew install zsh && \
 		echo $(shell which zsh) | sudo tee -a $(SHELLS) && \
 		chsh -s $(shell which zsh); \
 	fi
 endif
-
-git: brew
-	brew install git git-extras
 
 brew-packages: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Brewfile || true
 
 cask-apps: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile || true
-
-vscode-extensions: cask-apps
-	for EXT in $$(cat install/Codefile); do code --install-extension $$EXT; done
-
-duti:
-	duti -v $(DOTFILES_DIR)/install/duti
 
 test:
 	bats test

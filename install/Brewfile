@@ -1,18 +1,4 @@
-tap "homebrew/bundle"
-tap "lotyp/homebrew-formulae"
-
 # core/dotfiles
 brew "bats-core"
-brew "duti"
 brew "stow"
 brew "grep"
-
-# fs/network
-
-# search/grep/diff
-
-# languages/tools
-
-# media
-
-# misc
