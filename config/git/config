@@ -1,9 +1,2 @@
-[user]
-	name = Andrew Baughman
-	email = andrewbaughman@icloud.com
-
-[github]
-	user = andrewbaughman
-
 [init]
 	defaultBranch = main
