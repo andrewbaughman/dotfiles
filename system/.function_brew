@@ -1,0 +1,5 @@
+fun stash_packages () {
+    for i in $(brew list); do
+        echo "brew \"${i}\"" >> $DOTFILES_DIR/install/Brewfile
+    done
+}
