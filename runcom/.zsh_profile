@@ -21,9 +21,12 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 
 # Source the dotfiles (order matters)
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,path,prompt}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,path,prompt,git_completion}; do
   . "$DOTFILE"
 done
+
+# Git completion
+autoload -Uz compinit && compinit
 
 # Wrap up
 
