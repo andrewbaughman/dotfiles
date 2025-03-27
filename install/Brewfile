@@ -9,4 +9,3 @@ brew "tmux"
 # file navigation and viewing
 brew "tree"
 brew "bat"
-brew "yazi"

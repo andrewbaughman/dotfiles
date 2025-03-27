@@ -15,6 +15,3 @@ cask "obsidian"
 cask "iterm2"
 cask "visual-studio-code"
 cask "fork"
-
-# Fonts
-cask "font-symbols-only-nerd-font" # needed for Yazi
