@@ -10,6 +10,7 @@ sub_help () {
   echo "Commands:"
   echo "   help             This help message"
   echo "   macos            Apply macOS system defaults"
+  echo "   dock             Apply macOS dock settings"
   echo "   test             Run tests"
 }
 
@@ -22,6 +23,10 @@ sub_macos () {
     echo "Applying ${DEFAULTS_FILE}" && . "${DEFAULTS_FILE}"
   done
   echo "Done. Some changes may require a logout/restart to take effect."
+}
+
+sub_dock () {
+  . "${DOTFILES_DIR}/macos/dock.sh" && echo "Dock reloaded."
 }
 
 case $COMMAND_NAME in
