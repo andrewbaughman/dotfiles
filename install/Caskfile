@@ -1,0 +1,16 @@
+# Background UI Tweaks
+cask "dockey"
+
+# Browsing
+cask "firefox"
+
+# Productivity
+cask "raycast"
+cask "shottr"
+cask "keyclu"
+cask "obsidian"
+
+# Development
+cask "iterm2"
+cask "visual-studio-code"
+cask "fork"
