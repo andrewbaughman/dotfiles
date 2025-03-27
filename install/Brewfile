@@ -2,10 +2,3 @@
 brew "bats-core"
 brew "stow"
 brew "grep"
-
-# user interface
-brew "tmux"
-
-# file navigation and viewing
-brew "tree"
-brew "bat"
