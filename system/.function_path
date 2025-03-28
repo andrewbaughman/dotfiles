@@ -1,0 +1,14 @@
+remove_from_path() {
+  local path_to_remove="$1"
+  local new_path=""
+
+  IFS=':' # Set the delimiter to ':'
+  for dir in $PATH; do
+    if [[ "$dir" != "$path_to_remove" ]]; then
+      new_path+="$dir:"
+    fi
+  done
+
+  unset IFS # Reset IFS to its default value
+  export PATH="${new_path%:}" # Remove the trailing colon
+}
