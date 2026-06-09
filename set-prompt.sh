@@ -1,4 +1,3 @@
-<<<<<<< HEAD:set-prompt.sh
 # Switch long/short prompt
 
 ps0() {
@@ -71,5 +70,3 @@ set_prompt () {
 precmd() {
   set_prompt
 }
-=======
->>>>>>> c2c61e3e79a3df4b52e9c40aa8fff3827173a87a:system/.prompt
