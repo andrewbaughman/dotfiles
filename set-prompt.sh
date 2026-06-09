@@ -1,3 +1,19 @@
+# Switch long/short prompt
+
+ps0() {
+  unset PROMPT_COMMAND
+  PS1='$ '
+}
+
+ps1() {
+  source "$DOTFILES_DIR"/system/.prompt
+}
+
+ps2() {
+  unset PROMPT_COMMAND
+  PS1="${P_GREEN}$ ${P_RESET}"
+}
+
 # Prompt for Zsh
 
 autoload colors && colors
