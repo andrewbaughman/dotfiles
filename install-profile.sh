@@ -1,0 +1,2 @@
+cp .zshrc ~
+source ~/.zshrc

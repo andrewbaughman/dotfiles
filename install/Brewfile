@@ -1,4 +1,0 @@
-# core/dotfiles
-brew "bats-core"
-brew "stow"
-brew "grep"
