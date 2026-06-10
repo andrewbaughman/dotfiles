@@ -1,4 +1,4 @@
-source set-path.sh
-source set-macos-defaults.sh
-source set-git-completion.sh
-source set-prompt.sh
+source ~/.dotfiles/set-path.sh
+source ~/.dotfiles/set-macos-defaults.sh
+source ~/.dotfiles/set-git-completion.sh
+source ~/.dotfiles/set-prompt.sh
